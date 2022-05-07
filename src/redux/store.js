@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import usersReducer from './users/usersReducer';
+
 const store = configureStore({
   reducer: {
-    users: state => null,
+    users: usersReducer,
   },
   devTools: process.env.NODE_ENV === 'development',
 });

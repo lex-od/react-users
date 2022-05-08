@@ -15,6 +15,7 @@ export const PAGE_SIZE = 5;
 
 const list = createReducer(testUsers, {
   [getAllUsersSuccess]: (_, { payload }) => payload,
+  // [getAllUsersError]: () => [],
 });
 
 const listPending = createReducer(true, {

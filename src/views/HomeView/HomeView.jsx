@@ -29,8 +29,7 @@ const HomeView = () => {
 
       {isShowNoItems && <p className={css.noItems}>No users found</p>}
 
-      {/* {isShowUserList && <UserList />} */}
-      <UserList />
+      {isShowUserList && <UserList />}
 
       <UserActions />
     </Container>

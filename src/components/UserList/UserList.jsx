@@ -14,7 +14,7 @@ const UserList = () => {
 
       <ul className={css.list}>
         {userPage.map(user => (
-          <UserItem user={user} />
+          <UserItem key={user.id} user={user} />
         ))}
       </ul>
     </div>

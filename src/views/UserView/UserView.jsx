@@ -28,20 +28,18 @@ const UserView = () => {
     return { name, surname, descr };
   }, [editedUser]);
 
-  const handleAddUser = useCallback(
+  const handleFormSubmit = useCallback(
     async newUser => {
-      await dispatch(usersOps.addUser(newUser));
-      navigate(routes.home);
-    },
-    [dispatch, navigate],
-  );
+      if (editUserMatch) {
+        await dispatch(usersOps.editUser(userId, newUser));
+      } else {
+        await dispatch(usersOps.addUser(newUser));
+      }
 
-  const handleEditUser = useCallback(
-    async newUser => {
-      await dispatch(usersOps.editUser(userId, newUser));
+      // При ошибке не переходим на главную
       navigate(routes.home);
     },
-    [userId, dispatch, navigate],
+    [editUserMatch, userId, dispatch, navigate],
   );
 
   const isLoadSuccess = !listPending && !listError;
@@ -67,10 +65,7 @@ const UserView = () => {
       )}
 
       {isShowUserForm && (
-        <UserForm
-          initValues={formInitValues}
-          onSubmit={editUserMatch ? handleEditUser : handleAddUser}
-        />
+        <UserForm initValues={formInitValues} onSubmit={handleFormSubmit} />
       )}
     </Container>
   );

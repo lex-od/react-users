@@ -53,7 +53,7 @@ const listError = createReducer(null, {
   // [getAllUsersError]: (_, { payload }) => payload,
 });
 
-const actionsPending = createReducer(true, {
+const actionsPending = createReducer(false, {
   [addUserRequest]: () => true,
   [addUserSuccess]: () => false,
   [addUserError]: () => false,

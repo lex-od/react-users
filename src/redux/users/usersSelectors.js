@@ -10,6 +10,8 @@ const getListError = state => state.users.listError;
 
 const getCurrentPage = state => state.users.currentPage;
 
+const getActionsPending = state => state.users.actionsPending;
+
 const getPageCount = state => {
   const userCount = getAllUsers(state).length;
 
@@ -36,6 +38,7 @@ const usersSelectors = {
   getListPending,
   getListError,
   getCurrentPage,
+  getActionsPending,
   getPageCount,
   getCurrentPageUsers,
   getUserById,

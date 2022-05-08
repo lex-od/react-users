@@ -25,6 +25,12 @@ const getCurrentPageUsers = createSelector(
   },
 );
 
+const getUserById = (state, userId) => {
+  if (!userId) return null;
+
+  return getAllUsers(state).find(({ id }) => id === userId);
+};
+
 const usersSelectors = {
   getAllUsers,
   getListPending,
@@ -32,5 +38,6 @@ const usersSelectors = {
   getCurrentPage,
   getPageCount,
   getCurrentPageUsers,
+  getUserById,
 };
 export default usersSelectors;

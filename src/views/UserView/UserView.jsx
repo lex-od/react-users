@@ -1,5 +1,6 @@
+import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useMatch, useNavigate, useParams } from 'react-router';
 
 import routes from '../../routes';
 import { usersOps, usersSls } from '../../redux/users';
@@ -8,20 +9,69 @@ import Container from '../../components/Container';
 import UserForm from '../../components/UserForm';
 
 const UserView = () => {
-  const dispatch = useDispatch();
+  // Если есть editUserMatch - редактирование, иначе - добавление
+  const editUserMatch = useMatch(routes.editUser);
+  // id юзера, для случая редактирования
   const { userId } = useParams();
-  // const user = useSelector(state => usersSls.getUserById(state, userId));
+  const navigate = useNavigate();
 
-  const handleEditUser = editedUser => {
-    // dispatch(usersOps.editUser(editedUser));
-    // history.push(routes.home);
-  };
+  const dispatch = useDispatch();
+  const listPending = useSelector(usersSls.getListPending);
+  const listError = useSelector(usersSls.getListError);
+  const editedUser = useSelector(state => usersSls.getUserById(state, userId));
+
+  const formInitValues = useMemo(() => {
+    if (!editedUser) return null;
+
+    const { name, surname, descr } = editedUser;
+
+    return { name, surname, descr };
+  }, [editedUser]);
+
+  const handleAddUser = useCallback(
+    async newUser => {
+      await dispatch(usersOps.addUser(newUser));
+      navigate(routes.home);
+    },
+    [dispatch, navigate],
+  );
+
+  const handleEditUser = useCallback(
+    async newUser => {
+      await dispatch(usersOps.editUser(userId, newUser));
+      navigate(routes.home);
+    },
+    [userId, dispatch, navigate],
+  );
+
+  const isLoadSuccess = !listPending && !listError;
+  const isCorrectFormData = (editUserMatch && editedUser) || !editUserMatch;
+
+  const isShowUserNotFound = isLoadSuccess && editUserMatch && !editedUser;
+  const isShowUserForm = isLoadSuccess && isCorrectFormData;
 
   return (
     <Container>
-      <h1 className={css.pageTitle}>Add/Edit User</h1>
+      <h1 className={css.pageTitle}>{editUserMatch ? 'Edit' : 'Add'} User</h1>
 
-      <UserForm onSubmit={handleEditUser} />
+      {listPending && <p className={css.spinner}>Loading...</p>}
+
+      {!listPending && listError && (
+        <p className={css.eror}>
+          {listError.name}. {listError.message}
+        </p>
+      )}
+
+      {isShowUserNotFound && (
+        <p className={css.noItems}>User with id {userId} not found</p>
+      )}
+
+      {isShowUserForm && (
+        <UserForm
+          initValues={formInitValues}
+          onSubmit={editUserMatch ? handleEditUser : handleAddUser}
+        />
+      )}
     </Container>
   );
 };

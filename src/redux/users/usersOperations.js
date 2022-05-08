@@ -35,8 +35,11 @@ const addUser = user => async dispatch => {
     const { data } = await api.addUser(user);
 
     dispatch(addUserSuccess(data));
-  } catch ({ name, message }) {
+  } catch (error) {
+    const { name, message } = error;
     dispatch(addUserError({ name, message }));
+
+    throw error;
   }
 };
 
@@ -47,8 +50,11 @@ const editUser = (id, user) => async dispatch => {
     const { data } = await api.editUser(id, user);
 
     dispatch(editUserSuccess(data));
-  } catch ({ name, message }) {
+  } catch (error) {
+    const { name, message } = error;
     dispatch(editUserError({ name, message }));
+
+    throw error;
   }
 };
 

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import routes from '../../routes';
 import css from './UserForm.module.scss';
 
-const UserForm = ({ onCancel, onSubmit, initValues }) => {
+const UserForm = ({ onSubmit, initValues }) => {
   const navigate = useNavigate();
 
   //eslint-disable-next-line

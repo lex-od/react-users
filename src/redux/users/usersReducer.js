@@ -67,6 +67,8 @@ const actionsPending = createReducer(true, {
   [deleteUserError]: () => false,
 });
 
+// Для этой ошибки не делал отображение в интерфейсе
+// Но можно выводить какое-то сообщение в форме и списке юзеров
 const actionsError = createReducer(null, {
   [addUserRequest]: () => null,
   [addUserError]: (_, { payload }) => payload,

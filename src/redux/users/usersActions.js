@@ -4,6 +4,9 @@ const getAllUsersRequest = createAction('users/getAllUsers/request');
 const getAllUsersSuccess = createAction('users/getAllUsers/success');
 const getAllUsersError = createAction('users/getAllUsers/error');
 
+const setPrevPage = createAction('users/setPrevPage');
+const setNextPage = createAction('users/setNextPage');
+
 const addUserRequest = createAction('users/addUser/request');
 const addUserSuccess = createAction('users/addUser/success');
 const addUserError = createAction('users/addUser/error');
@@ -20,6 +23,8 @@ const usersActions = {
   getAllUsersRequest,
   getAllUsersSuccess,
   getAllUsersError,
+  setPrevPage,
+  setNextPage,
   addUserRequest,
   addUserSuccess,
   addUserError,

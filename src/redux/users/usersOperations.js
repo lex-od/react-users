@@ -1,10 +1,12 @@
 import { api } from '../../services';
-import usersActions from './usersActions';
+import usersActs from './usersActions';
+import usersSls from './usersSelectors';
 
 const {
   getAllUsersRequest,
   getAllUsersSuccess,
   getAllUsersError,
+  setPrevPage,
   addUserRequest,
   addUserSuccess,
   addUserError,
@@ -14,7 +16,7 @@ const {
   deleteUserRequest,
   deleteUserSuccess,
   deleteUserError,
-} = usersActions;
+} = usersActs;
 
 const getAllUsers = () => async dispatch => {
   dispatch(getAllUsersRequest());
@@ -58,13 +60,21 @@ const editUser = (id, user) => async dispatch => {
   }
 };
 
-const deleteUser = id => async dispatch => {
+const deleteUser = id => async (dispatch, getState) => {
   dispatch(deleteUserRequest());
 
   try {
     await api.deleteUser(id);
 
     dispatch(deleteUserSuccess(id));
+
+    const state = getState();
+    const currentPage = usersSls.getCurrentPage(state);
+    const pageCount = usersSls.getPageCount(state);
+
+    if (currentPage > pageCount) {
+      dispatch(setPrevPage());
+    }
   } catch ({ name, message }) {
     dispatch(deleteUserError({ name, message }));
   }

@@ -1,4 +1,13 @@
+@use 'styles/shared.scss';
+
 .userActions {
-  margin-top: 20px;
   text-align: center;
+}
+
+.addUserLink {
+  @extend %accent-link;
+
+  min-width: 150px;
+  padding: 12px 20px;
+  font-size: 20px;
 }

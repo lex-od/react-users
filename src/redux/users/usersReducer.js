@@ -1,6 +1,6 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
 
-import testUsers from '../../json/testUsers.json';
+// import testUsers from '../../json/testUsers.json';
 import usersActions from './usersActions';
 
 const {
@@ -22,9 +22,9 @@ const {
 
 export const PAGE_SIZE = 5;
 
-const list = createReducer(testUsers, {
+const list = createReducer([], {
   [getAllUsersSuccess]: (_, { payload }) => payload,
-  // [getAllUsersError]: () => [],
+  [getAllUsersError]: () => [],
 
   [addUserSuccess]: (state, { payload }) => [...state, payload],
 
@@ -50,7 +50,7 @@ const listPending = createReducer(true, {
 
 const listError = createReducer(null, {
   [getAllUsersRequest]: () => null,
-  // [getAllUsersError]: (_, { payload }) => payload,
+  [getAllUsersError]: (_, { payload }) => payload,
 });
 
 const actionsPending = createReducer(false, {

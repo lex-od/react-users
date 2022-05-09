@@ -15,10 +15,10 @@ const Pagination = () => {
         onClick={() => dispatch(usersActs.setPrevPage())}
         disabled={currentPage <= 1}
       >
-        Prev
+        &laquo;
       </button>
 
-      <p>
+      <p className={css.pageInfo}>
         Page {currentPage} of {pageCount}
       </p>
 
@@ -27,7 +27,7 @@ const Pagination = () => {
         onClick={() => dispatch(usersActs.setNextPage())}
         disabled={currentPage >= pageCount}
       >
-        Next
+        &raquo;
       </button>
     </div>
   );

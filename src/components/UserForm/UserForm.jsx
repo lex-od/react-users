@@ -17,7 +17,7 @@ const UserForm = ({ onSubmit, initValues }) => {
       initialValues={initValuesMemo}
       validate={validateForm}
       render={({ handleSubmit, submitting }) => (
-        <form className={css.form} onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className={css.fieldsGroup}>
             <Field
               name="name"
@@ -27,7 +27,7 @@ const UserForm = ({ onSubmit, initValues }) => {
                   <input id="user-name" autoComplete="off" {...input} />
 
                   {meta.touched && meta.error && (
-                    <p className={css.error}>{meta.error}</p>
+                    <p className={css.nameError}>{meta.error}</p>
                   )}
                 </div>
               )}
@@ -36,12 +36,12 @@ const UserForm = ({ onSubmit, initValues }) => {
             <Field
               name="surname"
               render={({ input, meta }) => (
-                <div className={css.surnameField}>
+                <div className={css.nameField}>
                   <label htmlFor="user-surname">Surname</label>
                   <input id="user-surname" autoComplete="off" {...input} />
 
                   {meta.touched && meta.error && (
-                    <p className={css.error}>{meta.error}</p>
+                    <p className={css.nameError}>{meta.error}</p>
                   )}
                 </div>
               )}
@@ -55,14 +55,14 @@ const UserForm = ({ onSubmit, initValues }) => {
                   <textarea id="user-description" autoComplete="off" {...input} />
 
                   {meta.touched && meta.error && (
-                    <p className={css.error}>{meta.error}</p>
+                    <p className={css.descriptionError}>{meta.error}</p>
                   )}
                 </div>
               )}
             />
           </div>
 
-          <div className={css.submitGroup}>
+          <div>
             <button
               className={css.cancelButton}
               onClick={() => navigate(routes.home)}

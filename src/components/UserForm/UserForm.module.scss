@@ -1,0 +1,87 @@
+@use 'styles/shared.scss';
+
+.fieldsGroup {
+  margin-bottom: 30px;
+}
+
+.nameField {
+  position: relative;
+  margin-bottom: 30px;
+
+  label {
+    margin-right: 15px;
+    width: 100px;
+    display: inline-block;
+    color: lightsalmon;
+  }
+
+  input {
+    padding: 10px;
+    width: 400px;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    outline: none;
+  }
+}
+
+.nameError {
+  @extend %form-error;
+
+  left: 115px;
+}
+
+.descriptionField {
+  position: relative;
+
+  label {
+    margin-bottom: 5px;
+    display: inline-block;
+    color: lightsalmon;
+  }
+
+  textarea {
+    padding: 10px;
+    width: 515px;
+    height: 150px;
+    display: block;
+
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    outline: none;
+    resize: none;
+  }
+}
+
+.descriptionError {
+  @extend %form-error;
+
+  left: 0;
+}
+
+.cancelButton {
+  @extend %accent-button;
+
+  margin-right: 30px;
+  min-width: 100px;
+  padding: 6px 10px;
+
+  font-size: 20px;
+}
+
+.submitButton {
+  @extend %accent-button;
+
+  min-width: 150px;
+  padding: 12px 20px;
+  font-size: 20px;
+}
+
+%form-error {
+  position: absolute;
+  top: calc(100% + 5px);
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 700;
+  color: lightsalmon;
+}

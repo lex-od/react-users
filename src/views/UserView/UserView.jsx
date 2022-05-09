@@ -50,18 +50,18 @@ const UserView = () => {
 
   return (
     <Container>
-      <h1 className={css.pageTitle}>{editUserMatch ? 'Edit' : 'Add'} User</h1>
+      <h1 className={css.title}>{editUserMatch ? 'Edit' : 'Add'} User</h1>
 
-      {listPending && <p className={css.spinner}>Loading...</p>}
+      {listPending && <p className={css.infoText}>Loading...</p>}
 
       {!listPending && listError && (
-        <p className={css.eror}>
+        <p className={css.infoText}>
           {listError.name}. {listError.message}
         </p>
       )}
 
       {isShowUserNotFound && (
-        <p className={css.noItems}>User with id {userId} not found</p>
+        <p className={css.infoText}>User with id {userId} not found</p>
       )}
 
       {isShowUserForm && (

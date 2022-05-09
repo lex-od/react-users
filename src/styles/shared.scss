@@ -1,0 +1,39 @@
+%accent-link {
+  display: inline-block;
+
+  border: 1px solid lightsalmon;
+  border-radius: 6px;
+  text-decoration: none;
+
+  font-weight: 700;
+  color: lightsalmon;
+  text-align: center;
+}
+
+%accent-button {
+  background-color: transparent;
+  border: 1px solid lightsalmon;
+  border-radius: 6px;
+  cursor: pointer;
+
+  font-weight: 700;
+  color: lightsalmon;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+}
+
+%accent-text {
+  font-size: 22px;
+  text-align: center;
+  font-weight: 700;
+  color: lightsalmon;
+}
+
+%ellipsis-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

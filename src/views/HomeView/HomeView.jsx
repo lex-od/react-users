@@ -19,15 +19,15 @@ const HomeView = () => {
     <Container>
       <h1 className={css.title}>User Admin</h1>
 
-      {listPending && <p className={css.spinner}>Loading...</p>}
+      {listPending && <p className={css.infoText}>Loading...</p>}
 
       {!listPending && listError && (
-        <p className={css.eror}>
+        <p className={css.infoText}>
           {listError.name}. {listError.message}
         </p>
       )}
 
-      {isShowNoItems && <p className={css.noItems}>No users found</p>}
+      {isShowNoItems && <p className={css.infoText}>No users found</p>}
 
       {isShowUserList && <UserList />}
 

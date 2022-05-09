@@ -1,0 +1,11 @@
+@use 'styles/shared.scss';
+
+.title {
+  margin: 30px 0;
+}
+
+.infoText {
+  @extend %accent-text;
+
+  margin: 0 0 30px;
+}

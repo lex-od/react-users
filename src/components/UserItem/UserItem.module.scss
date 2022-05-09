@@ -1,0 +1,48 @@
+@use 'styles/shared.scss';
+
+.userItem {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+
+  &:nth-child(odd) {
+    background-color: whitesmoke;
+  }
+}
+
+.name {
+  @extend %ellipsis-overflow;
+
+  margin: 0;
+  padding: 10px 15px;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.description {
+  @extend %ellipsis-overflow;
+
+  margin: 0;
+  padding: 10px 15px;
+  flex-grow: 1;
+}
+
+.actions {
+  padding: 10px 15px;
+  flex-shrink: 0;
+}
+
+.editLink {
+  @extend %accent-link;
+
+  margin-right: 15px;
+  min-width: 80px;
+  padding: 5px 10px;
+}
+
+.deleteButton {
+  @extend %accent-button;
+
+  min-width: 80px;
+  padding: 5px 10px;
+}

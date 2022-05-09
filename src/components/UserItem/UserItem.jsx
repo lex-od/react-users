@@ -18,22 +18,24 @@ const UserItem = ({ user }) => {
     <li className={css.userItem}>
       <p className={css.name}>{name}</p>
 
-      <p className={css.surname}>{surname}</p>
+      <p className={css.name}>{surname}</p>
 
       <p className={css.description}>{descr}</p>
 
-      <Link className={css.editLink} to={`/users/edit/${id}`}>
-        Edit
-      </Link>
+      <div className={css.actions}>
+        <Link className={css.editLink} to={`/users/edit/${id}`}>
+          Edit
+        </Link>
 
-      <button
-        className={css.deleteButton}
-        type="button"
-        onClick={handleDelete}
-        disabled={actionsPending}
-      >
-        Delete
-      </button>
+        <button
+          className={css.deleteButton}
+          type="button"
+          onClick={handleDelete}
+          disabled={actionsPending}
+        >
+          Delete
+        </button>
+      </div>
     </li>
   );
 };
